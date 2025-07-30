@@ -1,11 +1,10 @@
 from fastapi import APIRouter
-from pydantic import BaseModel
+from app.models.chat import ChatRequest, ChatResponse
+from app.services.chatbot_service import get_bot_reply
 
 router = APIRouter()
 
-class ChatRequest(BaseModel):
-    message: str
-
-@router.post("/")
-async def chat_endpoint(req: ChatRequest):
-    return {"response": "Hi, I'm your assistant!"}
+@router.post("/", response_model=ChatResponse)
+def chat_endpoint(req: ChatRequest):
+    reply = get_bot_reply(req.message, req.language.value)
+    return ChatResponse(response=reply)
