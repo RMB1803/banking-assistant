@@ -17,7 +17,7 @@ class SupportedLanguage(str, Enum):
 
 class ChatRequest(BaseModel):
     message: str
-    language: SupportedLanguage
+    language: SupportedLanguage = SupportedLanguage.en
 
 class ChatResponse(BaseModel):
     response: str
