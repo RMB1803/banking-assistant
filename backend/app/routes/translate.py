@@ -1,15 +1,17 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
+from app.services.translate_service import translate_text
 
 router = APIRouter()
 
 class TranslationRequest(BaseModel):
     text: str
-    target_lang: str
+    target_language: str  
 
-@router.post("/")
-async def dummy_translate(req: TranslationRequest):
-    return {
-        "original": req.text,
-        "translated": f"(Translated to {req.target_lang}): {req.text}"
-    }
+class TranslationResponse(BaseModel):
+    translated_text: str
+
+@router.post("/", response_model=TranslationResponse)
+def translate(req: TranslationRequest):
+    translated = translate_text(req.text, req.target_language)
+    return {"translated_text": translated}
