@@ -23,12 +23,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python version
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Create and start virtual environment
+      - name: Create and activate virtual environment
         run: |
           python -m venv venv
           source venv/bin/activate
@@ -39,11 +39,8 @@ jobs:
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
         with:
-          name: python-backend
-          path: |
-            backend
-            !backend/venv/
-            !backend/__pycache__/
+          name: python-app
+          path: backend
 
   deploy:
     runs-on: ubuntu-latest
@@ -53,24 +50,21 @@ jobs:
       contents: read
 
     steps:
-      - name: Download artifact from build job
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: python-backend
+          name: python-app
 
-      - name: Login to Azure
+      - name: Azure login
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_0B155A16AD294A019596647E1B963F22 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_7DADEECF15534ACCAB50CB0641528F8F }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FF5D137E20E547B5B8E6B3976CD68CFE }}
 
-      - name: 'Deploy to Azure Web App'
+      - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
-        id: deploy-to-webapp
         with:
           app-name: 'bank-assistant-backend'
           slot-name: 'Production'
           package: backend
-
-          
