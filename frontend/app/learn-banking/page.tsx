@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ArrowLeft, CreditCard, Send, DollarSign, User, Phone, Mail, MapPin, Building } from 'lucide-react';
+import { ArrowLeft, CreditCard, Send, DollarSign, User} from 'lucide-react';
 import Header from '../components/Header';
 
 type WalkthroughType = 'account' | 'transfer' | null;
