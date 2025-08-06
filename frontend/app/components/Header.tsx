@@ -34,7 +34,7 @@ export default function Header() {
                   <Link href={"/assistant"}>Talk to Assistant</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  Learn Banking
+                  <Link href={"/learn-banking"}>Learn Banking</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/form-upload">Upload document</Link>

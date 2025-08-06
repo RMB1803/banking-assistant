@@ -43,7 +43,9 @@ export default function FeatureCards() {
                 and tutorials to help you feel confident.
               </p>
               <Button size="lg" className="text-sm sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
-                Learn Banking
+                <Link href={"/learn-banking"}>
+                  Learn Banking
+                </Link>
               </Button>
             </CardContent>
           </Card>
