@@ -1,5 +1,9 @@
-import { Shield } from 'lucide-react';
+'use client';
+
+import { ChevronDown, Globe, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import Link from 'next/link';
 
 export default function Header() {
   return (
@@ -11,23 +15,58 @@ export default function Header() {
               <Shield className="h-6 w-6 sm:h-8 sm:w-8 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="text-lg sm:text-xl lg:text-2xl font-medium text-foreground">SecureBank</h1>
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-medium text-foreground">SmartSahayak</h1>
               <p className="text-xs sm:text-sm text-muted-foreground hidden sm:block">Enhanced Banking Experience</p>
             </div>
           </div>
           <nav className="hidden md:flex items-center space-x-4 lg:space-x-6">
-            <a href="#" className="text-sm lg:text-lg text-foreground hover:text-primary transition-colors">
+            <Link href={"/"} className="text-sm lg:text-lg text-foreground hover:text-primary transition-colors">
               Home
-            </a>
-            <a href="#" className="text-sm lg:text-lg text-foreground hover:text-primary transition-colors">
-              Services
-            </a>
-            <a href="#" className="text-sm lg:text-lg text-foreground hover:text-primary transition-colors">
+            </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <span className="text-sm lg:text-lg text-foreground hover:text-primary transition-colors cursor-pointer">
+                  Services
+                </span>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center" className="w-48">
+                <DropdownMenuItem>
+                  <Link href={"/assistant"}>Talk to Assistant</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Learn Banking
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/form-upload">Upload document</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            {/* <a href="#" className="text-sm lg:text-lg text-foreground hover:text-primary transition-colors">
               Support
-            </a>
+            </a> */}
             {/* <Button variant="outline" className="text-lg px-6 py-3">
               Sign In
             </Button> */}
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="text-sm lg:text-base px-3 py-2 lg:px-4 lg:py-2">
+                  <Globe className="h-4 w-4 mr-2" />
+                  EN
+                  <ChevronDown className="h-4 w-4 ml-2" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-32">
+                <DropdownMenuItem>
+                  <Globe className="h-4 w-4 mr-2" />
+                  English
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Globe className="h-4 w-4 mr-2" />
+                  हिंदी
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { MessageCircle, GraduationCap, Upload } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export default function FeatureCards() {
   return (
@@ -21,7 +22,9 @@ export default function FeatureCards() {
                 to guide you through any banking task.
               </p>
               <Button size="lg" className="text-sm sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
-                Start Conversation
+                <Link href={"/assistant"}>
+                  Start Conversation
+                </Link>
               </Button>
             </CardContent>
           </Card>
@@ -59,7 +62,9 @@ export default function FeatureCards() {
                 or browse to upload important banking documents.
               </p>
               <Button size="lg" className="text-sm sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto">
-                Upload Documents
+                <Link href={"/form-upload"}>
+                  Upload Documents
+                </Link>
               </Button>
             </CardContent>
           </Card>
