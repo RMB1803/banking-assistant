@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react';
-import { Bot, ThumbsUp, ThumbsDown, Send, Mic, ChevronDown } from 'lucide-react';
+import { Bot, ThumbsUp, ThumbsDown, Send, Mic, ChevronDown, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -72,16 +72,29 @@ export default function AssistantPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
+      {/* Assistant Header */}
       <div className="border-b border-border bg-card shadow-sm p-4">
-        <div className="max-w-4xl mx-auto flex items-center space-x-3">
-          <div className="bg-primary/10 rounded-full p-2">
-            <Bot className="h-8 w-8 text-primary" />
+        <div className="max-w-4xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <div className="bg-primary/10 rounded-full p-2">
+              <Bot className="h-8 w-8 text-primary" />
+            </div>
+            <div>
+              <h1 className="text-xl font-semibold text-foreground">SmartSahayak Assistant</h1>
+              <p className="text-sm text-muted-foreground">Your Banking Helper</p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-xl font-semibold text-foreground">SmartSahayak Assistant</h1>
-            <p className="text-sm text-muted-foreground">Your Banking Helper</p>
-          </div>
+          
+          {/* Back to Home Button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => window.location.href = '/'}
+            className="flex items-center space-x-2 text-muted-foreground hover:text-foreground"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span className="hidden sm:inline">Back to Home</span>
+          </Button>
         </div>
       </div>
 
